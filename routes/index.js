@@ -1,6 +1,9 @@
 const express=require('express');
  const router=express.Router();
- const homeController=require('../controllers/home_controller.js');
+const homeController=require('../controllers/home_controller');
+
 console.log("its route index file")
 router.get('/',homeController.home);
- module.exports = router;
+router.use("/user",require("./user"));
+
+ module.exports = router; 
