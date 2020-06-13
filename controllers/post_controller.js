@@ -1,3 +1,6 @@
 module.exports.post = function(req,res){
-    return res.end('<h1>congrates for your first post</h1>');
+    return res.render('post',{
+        title:'post',
+        name:'anuj'
+    })
 }
