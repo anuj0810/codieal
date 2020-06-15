@@ -3,4 +3,4 @@ module.exports.post = function(req,res){
         title:'post',
         name:'anuj'
     })
-}
+} 
