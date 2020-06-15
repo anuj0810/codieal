@@ -3,10 +3,14 @@
         <title>
             <%=title %>
         </title>
+        <link rel="stylesheet" href="/css/layout.css">
+        <%- style %>
+
     </head>
     <body>
         <%- include('_header');%>  <!--this is called partial concept basically we use this concept when we need to repeat some part of our website in every page to without writting code for this in every page we can use this-->
         <%- body %> 
         <%- include('_footer');%>
+        <%- script %>
     </body>
 </html>
