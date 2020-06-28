@@ -2,13 +2,17 @@ const express= require('express');
 const app=express();
 const port=8000;
 const expressLayouts=require('express-ejs-layouts');
+const cookieParser = require('cookie-parser')// to reading and writting through cookies
+const db = require('./config/mongoose');
 app.use(expressLayouts);
 app.use(express.static('./assets'));
+app.use(express.urlencoded());
+app.use(cookieParser());
 // extract style and script form sub pages into the layout
 app.set('layout extractStyles',true)
 app.set('layout extractScripts',true);
-//connect mongo db
-const db = require('./config/mongoose');
+
+
 // use express router
 app.use('/',require('./routes'))
 app.set('view engine' , 'ejs');
