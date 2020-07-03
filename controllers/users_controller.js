@@ -1,9 +1,21 @@
 const User = require('../models/user')
 module.exports.profile=function(req,res){
-    return res.render('user',{
-        title:'user',
-        name:'anuj'
-    })
+   if (req.cookies.userId){
+       User.findById(req.cookies.userId, function(err,user){
+           if(user){
+                return res.render('user',{
+                     title:"User profile",
+                     user:user,
+                    //  email:user.email
+                 })
+           }
+           return res.redirect('/user/sign-in');
+       })
+
+   }
+   else{
+       return res.redirect('/user/sign-in');
+   }
 }
 
 module.exports.signUp=function(req,res){
@@ -52,7 +64,7 @@ module.exports.create_session = function(req,res){
             return res.redirect('back')
         }
        
-// res.cookies('user_id',user.id);
+             res.cookie('userId',user.id);
             return res.redirect('/user/profile');
       
     }
@@ -62,3 +74,14 @@ module.exports.create_session = function(req,res){
     });
     
 }
+
+//sign out
+
+module.exports.signOut= function(req,res){
+
+       res.clearCookie('userId'); 
+
+       return res.redirect('/user/sign-in'); 
+    }
+        
+    
