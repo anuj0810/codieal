@@ -1,4 +1,6 @@
+
 const User = require('../models/user')
+
 module.exports.profile=function(req,res){
     return res.render('user',{
         title:'user',
@@ -41,6 +43,7 @@ else{
 
 //get the sign in data
 
-module.exports.create_session = function(req,res){
+module.exports.createSession = function(req,res){
+    return res.redirect('/');
 
 }
