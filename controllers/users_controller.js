@@ -9,12 +9,20 @@ module.exports.profile=function(req,res){
 }
 
 module.exports.signUp=function(req,res){
+
+    if(req.isAuthenticated()){
+       return res.redirect('/user/profile')
+    }
+
     return res.render('user_sign_up',{
         title:'codiel|sign_up'
     })
 }
 
 module.exports.signIn=function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/user/profile')
+    }
     return res.render('user_sign_in',{
         title:'co diel|sign_in'
     })
@@ -44,6 +52,16 @@ else{
 //get the sign in data
 
 module.exports.createSession = function(req,res){
+    return res.redirect('/user/profile');
+
+}
+module.exports.signOut = function(req,res){
+     
+     req.logout()
+          
+
+        
+    
     return res.redirect('/');
 
 }
