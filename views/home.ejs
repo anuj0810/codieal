@@ -1,3 +1,27 @@
   <!--this is called partial concept basically we use this concept when we need to repeat some part of our website in every page to without writting code for this in every page we can use this-->
         <h1>codeial/ <%=title%> </h1>
     
+        <section id="feed-posts">
+          <h4>Posts</h4>
+          <form action="/post/create" id="new-post-form" method="POST">
+            <textarea name="content"  cols="30" rows="5"></textarea>
+            <input type="submit" value="Post">
+          </form> 
+
+          <div id="post-list"></div>
+           <ul>
+             <% for(let post of posts){ %>
+              <li> 
+                <p>
+                <%=post.content %>
+                <br>
+                <%=post.user.name %>
+
+              </p>
+              </li>
+
+             <% } %>
+           </ul>
+        </section>
+
+        <p><%= user.posts%></p>

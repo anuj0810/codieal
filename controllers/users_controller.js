@@ -1,5 +1,5 @@
-
 const User = require('../models/user')
+
 
 module.exports.profile=function(req,res){
     return res.render('user',{
@@ -65,3 +65,4 @@ module.exports.signOut = function(req,res){
     return res.redirect('/');
 
 }
+

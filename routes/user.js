@@ -4,9 +4,9 @@ const router=express.Router();
 const passport=require('passport');
 const LocalStrategy=require('passport-local');
 const usersController=require('../controllers/users_controller');
-const { route } = require('./post');
+// const { route } = require('./post');
 
-router.use('/post',require('./post'))
+// router.use('/post',require('./post'))
 router.get('/profile',passport.checkauthentication, usersController.profile);
 router.get('/sign-up',usersController.signUp);
 router.get('/sign-in',usersController.signIn);
@@ -20,4 +20,5 @@ router.post('/create_session', passport.authenticate(
 
 
 router.get('/signOut',usersController.signOut);
+
 module.exports = router;
