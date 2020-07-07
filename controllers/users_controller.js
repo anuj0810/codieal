@@ -57,11 +57,7 @@ module.exports.createSession = function(req,res){
 }
 module.exports.signOut = function(req,res){
      
-     req.logout()
-          
-
-        
-    
+     req.logout();
     return res.redirect('/');
 
 }

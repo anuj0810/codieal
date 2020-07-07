@@ -1,4 +1,5 @@
 const userPost = require('../models/post');
+
 module.exports.create=function(req,res){
     userPost.create({
         content:req.body.content,
