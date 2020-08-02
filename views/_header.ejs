@@ -5,6 +5,9 @@
     <ul>
         <% if (locals.user) {%>
             <li>
+                <a href="/">codieal</a>
+            </li>
+            <li>
                  <a href="/user/profile">
            <%=user.name %> </a> 
         </li>
@@ -13,6 +16,9 @@
            </li>
 
         <% }else{ %>
+            <li>
+                <a href="/">codieal</a>
+            </li>
             <li> 
                 <a href="/user/sign-in">sign in</a>
             </li>

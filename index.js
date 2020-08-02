@@ -1,6 +1,8 @@
+// to set up the express
 const express= require('express');
 const app=express();
 const port=8000;
+
 
 const expressLayouts=require('express-ejs-layouts');
 
@@ -11,12 +13,11 @@ const db = require('./config/mongoose');
 const session=require('express-session');
 const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');  
-const { Store } = require('express-session');
-// require('./path/to/passport/config/file')(passort);
 const MongoStore= require('connect-mongo')(session);
 
 //connnect node with sass
-const sassMiddleware= require('node-sass-middleware')
+const sassMiddleware= require('node-sass-middleware');
+
 app.use(sassMiddleware({
         /* Options */
         src: './assets/scss'
@@ -40,6 +41,8 @@ app.set('layout extractScripts',true);
 app.set('view engine' , 'ejs');
 //app.set('views',path.join(__dirname,'views')) you can use this one or below line work of both line is samenp
 app.set('views','./views')
+
+
  //mongo store is used to store the  session cookie in the db
 app.use(session({
     name:'codeial',
