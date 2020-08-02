@@ -1,5 +1,6 @@
 const Post=require('../models/post');
 const { populate } = require('../models/post');
+const User = require('../models/user');
 module.exports.home = function(req, res){
   
     // Post .find({},function(req,Posts){
@@ -19,11 +20,15 @@ module.exports.home = function(req, res){
         }
     })
     .exec(function(err,posts){ // so populate is used when we need to fatch complete other model not just id see in this case if we didn't populate then in view part we can't able to fetch the use name because acc  to post schema we have only user id so to get the complete user schema you have to populate it
-    return res.render('home', {  // and the exec function used whenever we use populate 
+       User.find({},function(err,users){
+        return res.render('home', {  // and the exec function used whenever we use populate 
             title: "Home",
             posts:posts,
+            all_users:users
            
         });
+       })
+    
     })
 
 

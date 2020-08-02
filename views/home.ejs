@@ -12,42 +12,18 @@
 
           <div id="post-list"></div>
            <ul>
-             <% for(let post of posts){ %>
-              <li> 
-                <p>
-                <%=post.content %>
-                <br>
-                <%=post.user.name %>
-                </p>
-        <div class="comment-on-post">
-          <% if (locals.user) {%> 
-            <form action="/comment/create" id="new-comment-form" method="POST">
-              <input type="text" name="content" >
-              <input type="hidden" name="post" value="<%= post._id %>">
-              <input type="submit" value="Comment">
-            </form>
-            <%}%>
-
-            <div class="post-comment-list">
-              <ul id="post-comments-<%= post._id %>">
-                <% for(let comment of post.comments) {%>
-                  <li> 
-                    <p>
-                    <%=comment.content %>
-                    <br>
-                    <%=comment.user.name %>
-                    </p>
-                
-                <%}%>
-              </ul>
-            </div>
-
-
-          </div>
-              </li>
-
+             <% for(post of posts){ %>
+              <%- include('_post') -%>
              <% } %>
            </ul>
         </section>
 
-      
+      <section id="all-user">
+        <h2>Your Friends</h2>
+        <% for(u of all_users){ %>
+          <p>
+            <a href="/user/profile/<%= u.id %>"> <%= u.name %> </a>
+          </p>
+        <%}%>
+
+      </section>
