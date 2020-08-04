@@ -2,39 +2,42 @@ const userComment = require('../models/comment');
 
 
 const Post=require("../models/post")
-module.exports.create=function(req,res){
-    Post.findById(req.body.post, function(err,post){
-        if(err){
-            console.log('error in saving the comment in post model');return;
-        }
-        if(post){
-            userComment.create({
+module.exports.create= async function(req,res){
+    let post = await Post.findById(req.body.post)
+       try{ if(post){
+          let comment=  await userComment.create({
             content: req.body.content,
             user: req.user._id,
             post: req.body.post
-        },function(err,comment){
-            if(err){
-                console.log('error in saving the comment in post model');return;
-            }
-            post.comments.push(comment);
-            post.save();
-            
-           res.redirect('back');
-        })
+        }) 
+           post.comments.push(comment);
+           post.save();
+          res.redirect('back');
     }
-}) }
+}
+catch(err){
+console.log('Error',err);
+}
+}
 
-module.exports.destroy=function(req,res){
-    userComment.findById(req.params.id, function(err,comment){
+            
+   module.exports.destroy= async function(req,res){
+       try{
+    let comment= await userComment.findById(req.params.id)
        if(comment.user == req.user.id){
            let postId=comment.post;
             comment.remove();
-            Post.findByIdAndUpdate(postId, { $pull: {comments: req.params.id}},function(err,post){
+            Post.findByIdAndUpdate(postId, { $pull: {comments: req.params.id}})
+            req.flash('success', 'Comment deleted!');
+
             return res.redirect('back');
-           })
         }else{
+            req.flash('error', 'Unauthorized');
             return res.redirect('back');
         }
-    
-   });
-}
+    }
+    catch(err){
+        req.flash('error', err);
+        return;
+    }
+   }

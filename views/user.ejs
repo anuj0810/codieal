@@ -2,9 +2,9 @@
 <h1>Codieal/Profile</h1>
     
 
-   <% if(user.id==profileUser.id) {%> 
+   <% if(locals.user.id == profileUser.id) {%> 
      <!-- if the user is logged in then only he is able to make changes -->
-   <form action="/user/update/<%=profileUser.id%>" method="POST">
+   <form action="/user/update/ <%= profileUser.id %>" method="POST">
      <label for="name">Enter Name</label>
      <input type="text" id="name" name="name" required>
      <!-- <label for="password">Enter</label>
@@ -12,14 +12,11 @@
      <label for="email">Enter email</label>
       <input type="email" name="email" id="email" required>
       <input type="submit" value="Update">
-   </form>
-
-     
-     
-     <%}else{%> 
+  </form>
+     <%} else{%> 
           <!-- if user if not logedin then  -->
           <h3><%= profileUser.name %></h3>
-          <h3> <%= profileUser.email %></h3>   
+          <h3><%= profileUser.email %></h3>   
           
           
           <%}%>

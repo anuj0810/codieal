@@ -5,15 +5,17 @@ const User = require('../models/user')
 
 //authenticaion using passportok 
 passport.use(new LocalStrategy({
-    usernameField:'email'
+    usernameField:'email',
+    passReqToCallback:true
 },
-function(email,password,done){
+function(req,email,password,done){
 User.findOne({email:email},function(err,user){
     if(err){
-        console.log('error')
+        req.flash('error',"This User didn't find")
         return done(err);
     }
     if(!user || user.password!=password){
+        req.flash('error','Invalid Username/password');
 
         return done(null,false)
 

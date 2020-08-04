@@ -22,7 +22,7 @@
         <h2>Your Friends</h2>
         <% for(u of all_users){ %>
           <p>
-            <a href="/user/profile/<%= u.id %>"> <%= u.name %> </a>
+            <a href="/user/profile/<%=u.id%>"> <%= u.name %> </a>
           </p>
         <%}%>
 

@@ -27,6 +27,8 @@ app.use(sassMiddleware({
       , prefix:  '/css'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
     }) );
 
+const flash= require('connect-flash');
+const customMiddleWare = require('./config/middleware')
 
 app.use(expressLayouts);
 app.use(express.static('./assets'));
@@ -69,6 +71,8 @@ store: new MongoStore(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+app.use(flash());
+app.use(customMiddleWare.setFalsh)
 // use express router
 app.use('/',require('./routes'))
 
